@@ -1,3 +1,4 @@
+import 'package:f_authentication_template/domain/controllers/authentication_controller.dart';
 import 'package:f_authentication_template/ui/pages/authentication/login_page.dart';
 import 'package:f_authentication_template/ui/pages/home/content.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: Content(),
-      home: SignUpPage(),
+      home: GetX<AuthenticationController>(
+        builder: (controller) {
+          if (controller.log) {
+            return Content();
+          }
+          return LoginPage();
+        },
+      ),
     );
   }
 }
